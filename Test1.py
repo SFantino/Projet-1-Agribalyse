@@ -3,12 +3,9 @@ import pandas as pd
 import plotly.express as px
 
 # Charger les bases de données
-df = pd.read_csv("Agribalyse_Detail etape.csv", delimiter=',', dtype=str)
+df = pd.read_csv("agribalyse-31-detail-par-etape.csv", delimiter=',', dtype=str)
 df_ingredients = pd.read_csv("Agribalyse_Detail ingredient.csv", delimiter=',', dtype=str)
-df_synthese = pd.read_csv("Agribalyse_Synthese(1).csv", delimiter=',', dtype=str)
-except FileNotFoundError as e:
-    st.error(f"Erreur : Fichier introuvable - {e}")
-    st.stop()
+df_synthese = pd.read_csv("agribalyse-31-synthese.csv", delimiter=',', dtype=str)
 
 # Normaliser les noms de colonnes
 df.columns = df.columns.str.strip()
