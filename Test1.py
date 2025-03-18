@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Charger les bases de données
-df = pd.read_csv("Agribalyse_Detail etape.csv", delimiter=',', dtype=str)
+df = pd.read_csv("Agribalyse_Synthese(1).csv", delimiter=',', dtype=str)
 df_ingredients = pd.read_csv("Agribalyse_Detail ingredient.csv", delimiter=',', dtype=str)
 df_synthese = pd.read_csv("Agribalyse_Detail etape.csv", delimiter=',', dtype=str)
 
