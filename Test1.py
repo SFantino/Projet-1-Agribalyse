@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Appliquer le design personnalisé
+from design import apply_custom_design
 st.markdown(apply_custom_design(), unsafe_allow_html=True)
 
 # Charger les bases de données
