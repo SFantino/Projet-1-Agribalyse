@@ -2,27 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Injecter du CSS personnalisé
-st.markdown(
-    """
-    <style>
-    /* Changer la couleur de fond de l'application */
-    .stApp {
-        background-color: white;
-    }
-    /* Changer la couleur du texte */
-    .stMarkdown, .stTextInput, .stSelectbox, .stButton, .stDataFrame, .stRadio, .stTitle, .stHeader {
-        color: black !important;
-    }
-    /* Changer la couleur des titres */
-    h1, h2, h3, h4, h5, h6 {
-        color: black !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
+# Appliquer le design personnalisé
+st.markdown(apply_custom_design(), unsafe_allow_html=True)
 
 # Charger les bases de données
 df = pd.read_csv("agribalyse-31-detail-par-etape.csv", delimiter=',', dtype=str)
