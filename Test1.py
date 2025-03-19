@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
-
 from front_page import show_navbar, get_selected_page
 from design import apply_custom_design
 
