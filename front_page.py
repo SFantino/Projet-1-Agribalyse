@@ -1,12 +1,12 @@
 import streamlit as st
 
-def apply_custom_design():
+def show_navbar():
     """
-    Applique le CSS personnalisé pour l'interface Streamlit.
+    Affiche la barre de navigation en haut de la page.
     """
-    custom_css = """
+    st.markdown("""
     <style>
-    /* Bandeau de navigation */
+    /* Fixe le menu en haut */
     .navbar {
         position: fixed;
         top: 0;
@@ -17,24 +17,26 @@ def apply_custom_design():
         z-index: 1000;
         display: flex;
         justify-content: center;
+        align-items: center;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Contenu du bandeau */
+    /* Style des liens */
     .navbar a {
         color: black;
         text-decoration: none;
-        padding: 10px 20px;
-        font-size: 18px;
+        padding: 15px 20px;
+        font-size: 20px;
         font-weight: bold;
+        transition: background-color 0.3s ease;
     }
 
-    /* Hover sur les liens */
+    /* Effet au survol */
     .navbar a:hover {
         background-color: #d6d6d6;
     }
 
-    /* Conteneur des menus déroulants */
+    /* Style des menus déroulants */
     .dropdown {
         position: relative;
         display: inline-block;
@@ -45,22 +47,23 @@ def apply_custom_design():
         display: none;
         position: absolute;
         background-color: #e8e8e8;
-        min-width: 200px;
+        min-width: 250px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
     }
 
-    /* Sous-menus visibles au survol */
+    /* Affichage du sous-menu au survol */
     .dropdown:hover .dropdown-content {
         display: block;
     }
 
-    /* Style des sous-menus */
+    /* Style des liens dans le sous-menu */
     .dropdown-content a {
         display: block;
-        padding: 10px;
-        text-decoration: none;
+        padding: 12px 15px;
         color: black;
-        font-size: 16px;
+        font-size: 18px;
+        text-decoration: none;
     }
 
     /* Suppression du fond bleu et du soulignement */
@@ -69,36 +72,41 @@ def apply_custom_design():
         text-decoration: none;
     }
 
-    /* Décalage du contenu principal pour ne pas être caché sous le bandeau */
+    /* Décalage du contenu pour éviter qu'il soit caché sous le bandeau */
     .content {
-        margin-top: 60px;
+        margin-top: 70px;
     }
     </style>
-    """
+    """, unsafe_allow_html=True)
 
-    navbar_html = """
+    st.markdown("""
     <div class="navbar">
-        <a href="/Accueil" target="_self">🏠 Accueil</a>
+        <a href="/?page=accueil">🏠 Accueil</a>
         
         <div class="dropdown">
             <a href="#">📖 Méthodologie</a>
             <div class="dropdown-content">
-                <a href="/Methodologie" target="_self">📌 Fonctionnement général</a>
-                <a href="/Normalisation" target="_self">📊 Normalisation</a>
+                <a href="/?page=fonctionnement">📌 Fonctionnement général</a>
+                <a href="/?page=normalisation">📊 Normalisation</a>
             </div>
         </div>
 
         <div class="dropdown">
             <a href="#">📚 Ressources</a>
             <div class="dropdown-content">
-                <a href="/Base_Agribalyse" target="_self">📂 Base de données Agribalyse</a>
-                <a href="/ACV" target="_self">🌍 ACV</a>
-                <a href="/Indicateurs" target="_self">📈 16 indicateurs</a>
+                <a href="/?page=agribalyse">📂 Base de données Agribalyse</a>
+                <a href="/?page=acv">🌍 ACV</a>
+                <a href="/?page=indicateurs">📈 16 indicateurs</a>
             </div>
         </div>
     </div>
 
     <div class="content">
-    """
+    """, unsafe_allow_html=True)
 
-    return custom_css + navbar_html
+def get_selected_page():
+    """
+    Récupère la page sélectionnée dans l'URL.
+    """
+    query_params = st.query_params
+    return query_params.get("page", "accueil")
