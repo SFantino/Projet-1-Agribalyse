@@ -1,5 +1,12 @@
 import streamlit as st
+import pandas as pd
+import plotly.express as px
+
 from front_page import show_navbar, get_selected_page
+from design import apply_custom_design
+
+# Appliquer le design
+st.markdown(apply_custom_design(), unsafe_allow_html=True)
 
 # Afficher la barre de navigation
 show_navbar()
