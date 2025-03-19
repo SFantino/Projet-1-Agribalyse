@@ -1,9 +1,5 @@
 import streamlit as st
 from front_page import show_navbar, get_selected_page
-from design import apply_custom_design
-
-# Appliquer le design
-st.markdown(apply_custom_design(), unsafe_allow_html=True)
 
 # Afficher la barre de navigation
 show_navbar()
@@ -29,6 +25,7 @@ elif page == "indicateurs":
 else:
     st.title("Accueil")
     st.write("Bienvenue sur l’interface d’évaluation environnementale.")
+
 
 
 
