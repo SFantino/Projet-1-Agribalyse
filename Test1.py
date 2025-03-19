@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from front_page import show_navbar, get_selected_page
+from front_page import show_navbar
 from design import apply_custom_design
 
 # Appliquer le design
@@ -11,8 +11,11 @@ st.markdown(apply_custom_design(), unsafe_allow_html=True)
 # Afficher la barre de navigation
 show_navbar()
 
+# Ajout d'un div pour décaler le contenu sous le bandeau
+st.markdown('<div class="content">', unsafe_allow_html=True)
+
 # Gestion de la navigation
-page = get_selected_page()
+page = st.experimental_get_query_params().get("page", ["home"])[0]
 
 if page == "fonctionnement":
     st.title("Fonctionnement général")
@@ -33,15 +36,8 @@ else:
     st.title("Accueil")
     st.write("Bienvenue sur l’interface d’évaluation environnementale.")
 
-
-
-
-
-
-
-
-
-
+# Fermer le div après le contenu principal
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 
