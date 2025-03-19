@@ -1,143 +1,104 @@
 import streamlit as st
 
-def custom_css():
-    return """
+def apply_custom_design():
+    """
+    Applique le CSS personnalisé pour l'interface Streamlit.
+    """
+    custom_css = """
     <style>
-        /* Style général du bandeau */
-        .topnav {
-            background-color: #e8e8e8;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px 0;
-            z-index: 1000;
-        }
-        
-        /* Conteneur centré */
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-        }
+    /* Bandeau de navigation */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #e8e8e8;
+        padding: 10px 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Style des liens du menu */
-        .nav-item {
-            font-size: 18px;
-            font-weight: bold;
-            color: black;
-            text-decoration: none;
-            padding: 10px 20px;
-            transition: background-color 0.3s ease;
-        }
+    /* Contenu du bandeau */
+    .navbar a {
+        color: black;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-        .nav-item:hover {
-            background-color: #dcdcdc;
-            border-radius: 5px;
-        }
+    /* Hover sur les liens */
+    .navbar a:hover {
+        background-color: #d6d6d6;
+    }
 
-        /* Style du menu déroulant */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    /* Conteneur des menus déroulants */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-            border-radius: 5px;
-        }
+    /* Contenu des sous-menus */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #e8e8e8;
+        min-width: 200px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    /* Sous-menus visibles au survol */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 
-        /* Style des sous-menus */
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 16px;
-        }
+    /* Style des sous-menus */
+    .dropdown-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
+    /* Suppression du fond bleu et du soulignement */
+    .dropdown-content a:hover {
+        background-color: #d6d6d6;
+        text-decoration: none;
+    }
 
-        /* Espacement pour éviter que le contenu soit caché par le bandeau */
-        .content {
-            margin-top: 60px;
-        }
+    /* Décalage du contenu principal pour ne pas être caché sous le bandeau */
+    .content {
+        margin-top: 60px;
+    }
     </style>
     """
 
-def render_navbar():
-    st.markdown(custom_css(), unsafe_allow_html=True)
-    st.markdown("""
-        <div class="topnav">
-            <div class="nav-container">
-                <a href="?page=Accueil" class="nav-item">Accueil</a>
-
-                <div class="dropdown">
-                    <a class="nav-item">Méthodologie</a>
-                    <div class="dropdown-content">
-                        <a href="?page=Fonctionnement">🛠️ Fonctionnement général</a>
-                        <a href="?page=Normalisation">📏 Normalisation</a>
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <a class="nav-item">Ressources</a>
-                    <div class="dropdown-content">
-                        <a href="?page=Base">📊 Base de données Agribalyse</a>
-                        <a href="?page=ACV">🌍 ACV</a>
-                        <a href="?page=Indicateurs">📈 16 indicateurs</a>
-                    </div>
-                </div>
+    navbar_html = """
+    <div class="navbar">
+        <a href="/Accueil" target="_self">🏠 Accueil</a>
+        
+        <div class="dropdown">
+            <a href="#">📖 Méthodologie</a>
+            <div class="dropdown-content">
+                <a href="/Methodologie" target="_self">📌 Fonctionnement général</a>
+                <a href="/Normalisation" target="_self">📊 Normalisation</a>
             </div>
         </div>
-    """, unsafe_allow_html=True)
 
-def get_page():
-    query_params = st.experimental_get_query_params()
-    return query_params.get("page", ["Accueil"])[0]
+        <div class="dropdown">
+            <a href="#">📚 Ressources</a>
+            <div class="dropdown-content">
+                <a href="/Base_Agribalyse" target="_self">📂 Base de données Agribalyse</a>
+                <a href="/ACV" target="_self">🌍 ACV</a>
+                <a href="/Indicateurs" target="_self">📈 16 indicateurs</a>
+            </div>
+        </div>
+    </div>
 
-def load_page():
-    page = get_page()
-    
-    if page == "Accueil":
-        st.title("Bienvenue sur la page d'accueil")
-        # Ici, tu peux importer Test1.py uniquement pour la page d'accueil
-        import Test1
+    <div class="content">
+    """
 
-    elif page == "Fonctionnement":
-        st.title("Méthodologie - Fonctionnement général")
-        st.write("Contenu sur le fonctionnement général.")
-
-    elif page == "Normalisation":
-        st.title("Méthodologie - Normalisation")
-        st.write("Contenu sur la normalisation.")
-
-    elif page == "Base":
-        st.title("Ressources - Base de données Agribalyse")
-        st.write("Informations sur Agribalyse.")
-
-    elif page == "ACV":
-        st.title("Ressources - ACV")
-        st.write("Explication sur l'Analyse de Cycle de Vie.")
-
-    elif page == "Indicateurs":
-        st.title("Ressources - 16 indicateurs")
-        st.write("Détails sur les 16 indicateurs environnementaux.")
-
-# Affichage du bandeau de navigation
-render_navbar()
-
-# Chargement de la page sélectionnée
-load_page()
+    return custom_css + navbar_html
