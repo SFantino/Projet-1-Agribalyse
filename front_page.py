@@ -4,7 +4,7 @@ def show_navbar():
     """
     Affiche la barre de navigation en haut de la page.
     """
-    st.markdown("""
+    navbar_html = """
     <style>
     /* Fixe le menu en haut */
     .navbar {
@@ -77,9 +77,7 @@ def show_navbar():
         margin-top: 70px;
     }
     </style>
-    """, unsafe_allow_html=True)
 
-    st.markdown("""
     <div class="navbar">
         <a href="/?page=accueil">🏠 Accueil</a>
         
@@ -100,13 +98,10 @@ def show_navbar():
             </div>
         </div>
     </div>
+    """
 
-    <div class="content">
-    """, unsafe_allow_html=True)
+    st.markdown(navbar_html, unsafe_allow_html=True)
 
 def get_selected_page():
-    """
-    Récupère la page sélectionnée dans l'URL.
-    """
     query_params = st.query_params
     return query_params.get("page", "accueil")
