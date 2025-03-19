@@ -13,10 +13,10 @@ def show_navbar():
         left: 0;
         width: 100%;
         background-color: #e8e8e8;
-        padding: 10px 0;
+        padding: 10px 10px;
         z-index: 1000;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -26,7 +26,7 @@ def show_navbar():
         color: black;
         text-decoration: none;
         padding: 15px 20px;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         transition: background-color 0.3s ease;
     }
@@ -47,7 +47,7 @@ def show_navbar():
         display: none;
         position: absolute;
         background-color: #e8e8e8;
-        min-width: 250px;
+        min-width: 200px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
     }
@@ -60,9 +60,9 @@ def show_navbar():
     /* Style des liens dans le sous-menu */
     .dropdown-content a {
         display: block;
-        padding: 12px 15px;
+        padding: 10px 15px;
         color: black;
-        font-size: 18px;
+        font-size: 16px;
         text-decoration: none;
     }
 
@@ -74,7 +74,7 @@ def show_navbar():
 
     /* Décalage du contenu pour éviter qu'il soit caché sous le bandeau */
     .content {
-        margin-top: 70px;
+        margin-top: 60px;
     }
     </style>
 
