@@ -2,56 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from front_page import show_navbar
-from design import apply_custom_design
-
-# Appliquer le design
-st.markdown(apply_custom_design(), unsafe_allow_html=True)
-
-# Afficher la barre de navigation
-show_navbar()
-
-# Ajout d'un div pour décaler le contenu sous le bandeau
-st.markdown('<div class="content">', unsafe_allow_html=True)
-
-# Gestion de la navigation
-page = st.experimental_get_query_params().get("page", ["home"])[0]
-
-if page == "fonctionnement":
-    st.title("Fonctionnement général")
-    st.write("Explication du fonctionnement général...")
-elif page == "normalisation":
-    st.title("Normalisation")
-    st.write("Détails sur la normalisation...")
-elif page == "agribalyse":
-    st.title("Base de données Agribalyse")
-    st.write("Informations sur Agribalyse...")
-elif page == "acv":
-    st.title("ACV (Analyse du Cycle de Vie)")
-    st.write("Explication de l'ACV...")
-elif page == "indicateurs":
-    st.title("16 indicateurs environnementaux")
-    st.write("Détails sur les 16 indicateurs...")
-else:
-    st.title("Accueil")
-    st.write("Bienvenue sur l’interface d’évaluation environnementale.")
-
-# Fermer le div après le contenu principal
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Charger les bases de données
 df = pd.read_csv("agribalyse-31-detail-par-etape.csv", delimiter=',', dtype=str)
